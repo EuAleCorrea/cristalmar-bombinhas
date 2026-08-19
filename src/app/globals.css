@@ -1,0 +1,170 @@
+@import url('https://fonts.cdnfonts.com/css/garet');
+@import "tailwindcss";
+
+/* Definição de @font-face para The Seasons (com suporte a arquivos locais/sistema e fallbacks) */
+@font-face {
+  font-family: 'The Seasons';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('The Seasons'), local('TheSeasons'), local('The Seasons Regular'), local('TheSeasons-Regular');
+}
+
+@font-face {
+  font-family: 'The Seasons';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('The Seasons Italic'), local('TheSeasons-Italic'), local('The Seasons Italic');
+}
+
+@font-face {
+  font-family: 'The Seasons';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('The Seasons Bold'), local('TheSeasons-Bold');
+}
+
+@layer base {
+  :root {
+    --color-ocean-sky: #3B82F6;
+    --color-ocean-sky-light: #4B89DC;
+    --color-crystal-teal: #0EA5E9;
+    --color-crystal-teal-light: #38BDF8;
+    --color-velvet-slate: #5C667E;
+    --color-velvet-slate-dark: #4A546D;
+    --color-midnight-navy: #1E2638;
+    --color-midnight-navy-deep: #111827;
+    --color-amber-gold: #F59E0B;
+    --color-amber-gold-light: #FBBF24;
+    --color-porcelain-bg: #F4F7FC;
+    --color-surface-white: #FFFFFF;
+    --color-muted-body: #64748B;
+    --color-border-subtle: #E2E8F0;
+
+    /* Configuração de Fontes: Garet (Principal) e The Seasons (Secundária) */
+    --font-primary-sans: 'Garet', var(--font-primary-sans-fallback, 'Plus Jakarta Sans'), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-display-serif: 'The Seasons', 'TheSeasons', var(--font-display-serif-fallback, 'Instrument Serif'), 'Playfair Display', Georgia, serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-primary-sans);
+  }
+
+  body {
+    background-color: var(--color-porcelain-bg);
+    color: var(--color-midnight-navy);
+    font-family: var(--font-primary-sans);
+    overflow-x: hidden;
+  }
+
+  /* REGRA OBRIGATÓRIA: Remover setas/spinners de inputs numéricos */
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+}
+
+/* Tipografia Utilitária */
+.font-serif-luxury {
+  font-family: var(--font-display-serif);
+}
+
+.font-sans-primary {
+  font-family: var(--font-primary-sans);
+}
+
+.font-mono-data {
+  font-family: var(--font-mono-data), monospace;
+}
+
+/* Efeitos de Vidro (Glassmorphism) conforme DESIGN.md §2.3 */
+.glass-light {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #FFFFFF;
+}
+
+.glass-dark {
+  background: rgba(30, 38, 56, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.glass-ocean {
+  background: rgba(14, 165, 233, 0.18);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  color: #0EA5E9;
+}
+
+/* Sombras e Elevação conforme DESIGN.md §4.3 */
+.shadow-card {
+  box-shadow: 0 10px 30px -10px rgba(30, 41, 59, 0.06);
+}
+
+.shadow-card-hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 35px -10px rgba(30, 41, 59, 0.12);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.shadow-float {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.shadow-navbar {
+  box-shadow: 0 8px 32px -4px rgba(30, 38, 56, 0.18);
+}
+
+/* Botão FAB WhatsApp e Animação de Pulso Verde (§5.8) */
+@keyframes pulse-green {
+  0%, 100% {
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  }
+  50% {
+    box-shadow: 0 4px 32px rgba(37, 211, 102, 0.7);
+  }
+}
+
+.animate-pulse-green {
+  animation: pulse-green 2.5s infinite;
+}
+
+/* Acessibilidade: prefers-reduced-motion (§6) */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F4F7FC;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
