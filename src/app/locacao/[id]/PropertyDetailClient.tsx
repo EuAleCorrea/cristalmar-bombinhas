@@ -285,7 +285,7 @@ export function PropertyDetailClient({ imovel }: PropertyDetailClientProps) {
 
         {/* Coluna Direita: Box de Orçamento e Reserva WhatsApp */}
         <div>
-          <div className="bg-white rounded-[2.5rem] p-6 sm:p-8 border border-slate-200/80 shadow-xl sticky top-24 space-y-6">
+          <div className="bg-white rounded-[2.5rem] p-6 sm:p-8 border border-slate-200/80 shadow-xl space-y-6">
             
             <div>
               <span className="text-xs font-semibold text-slate-400 block">
