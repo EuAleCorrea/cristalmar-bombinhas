@@ -10,7 +10,6 @@ import {
   ArrowUpRight, 
   Phone, 
   MapPin, 
-  Sparkles, 
   MessageCircle 
 } from "lucide-react";
 

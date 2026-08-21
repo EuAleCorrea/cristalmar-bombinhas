@@ -8,12 +8,12 @@ import {
   Home, 
   Users, 
   Hash, 
-  Sparkles, 
   Waves, 
   ShieldCheck, 
   Calendar,
   CheckCircle
 } from "lucide-react";
+import { AnimatedStaggeredSelect } from "@/components/ui/animated-staggered-select";
 
 export function HeroSearch() {
   const router = useRouter();
@@ -114,58 +114,61 @@ export function HeroSearch() {
             
             {/* Campo: Praia / Região */}
             <div className="bg-slate-50 hover:bg-slate-100 transition-colors p-3 rounded-2xl border border-slate-200/80">
-              <label className="text-[11px] font-extrabold uppercase text-slate-500 flex items-center gap-1 mb-1">
-                <MapPin className="w-3.5 h-3.5 text-sky-600" /> Praia / Região
-              </label>
-              <select
+              <AnimatedStaggeredSelect
+                label="Praia / Região"
+                icon={MapPin}
                 value={praia}
-                onChange={(e) => setPraia(e.target.value)}
-                className="w-full bg-transparent font-bold text-slate-900 text-sm focus:outline-none cursor-pointer"
-              >
-                <option value="">Todas as Praias</option>
-                <option value="Bombas">Praia de Bombas</option>
-                <option value="Canto Grande">Canto Grande (Mar de Dentro/Fora)</option>
-                <option value="Mariscal">Praia de Mariscal</option>
-                <option value="Bombinhas (Centro)">Bombinhas Centro</option>
-                <option value="Quatro Ilhas">Quatro Ilhas</option>
-              </select>
+                onChange={setPraia}
+                variant="capsule"
+                placeholder="Todas as Praias"
+                options={[
+                  { value: "", label: "Todas as Praias" },
+                  { value: "Bombas", label: "Praia de Bombas" },
+                  { value: "Canto Grande", label: "Canto Grande (Mar de Dentro/Fora)" },
+                  { value: "Mariscal", label: "Praia de Mariscal" },
+                  { value: "Bombinhas (Centro)", label: "Bombinhas Centro" },
+                  { value: "Quatro Ilhas", label: "Quatro Ilhas" },
+                ]}
+              />
             </div>
 
             {/* Campo: Tipo de Imóvel */}
             <div className="bg-slate-50 hover:bg-slate-100 transition-colors p-3 rounded-2xl border border-slate-200/80">
-              <label className="text-[11px] font-extrabold uppercase text-slate-500 flex items-center gap-1 mb-1">
-                <Home className="w-3.5 h-3.5 text-sky-600" /> Tipo do Imóvel
-              </label>
-              <select
+              <AnimatedStaggeredSelect
+                label="Tipo do Imóvel"
+                icon={Home}
                 value={tipo}
-                onChange={(e) => setTipo(e.target.value)}
-                className="w-full bg-transparent font-bold text-slate-900 text-sm focus:outline-none cursor-pointer"
-              >
-                <option value="">Todos os Tipos</option>
-                <option value="Apartamento">Apartamento</option>
-                <option value="Cobertura">Cobertura Duplex</option>
-                <option value="Casa">Casa Térrea / Sobrado</option>
-                <option value="Sobrado">Sobrado em Condomínio</option>
-              </select>
+                onChange={setTipo}
+                variant="capsule"
+                placeholder="Todos os Tipos"
+                options={[
+                  { value: "", label: "Todos os Tipos" },
+                  { value: "Apartamento", label: "Apartamento" },
+                  { value: "Cobertura", label: "Cobertura Duplex" },
+                  { value: "Casa", label: "Casa Térrea / Sobrado" },
+                  { value: "Sobrado", label: "Sobrado em Condomínio" },
+                ]}
+              />
             </div>
 
             {/* Campo: Hóspedes / Quartos */}
             <div className="bg-slate-50 hover:bg-slate-100 transition-colors p-3 rounded-2xl border border-slate-200/80">
-              <label className="text-[11px] font-extrabold uppercase text-slate-500 flex items-center gap-1 mb-1">
-                <Users className="w-3.5 h-3.5 text-sky-600" /> Hóspedes
-              </label>
-              <select
+              <AnimatedStaggeredSelect
+                label="Hóspedes"
+                icon={Users}
                 value={hospedes}
-                onChange={(e) => setHospedes(e.target.value)}
-                className="w-full bg-transparent font-bold text-slate-900 text-sm focus:outline-none cursor-pointer"
-              >
-                <option value="">Qualquer quantidade</option>
-                <option value="2">Casal (2 pessoas)</option>
-                <option value="4">Família (até 4 pessoas)</option>
-                <option value="6">Até 6 pessoas</option>
-                <option value="8">Até 8 pessoas</option>
-                <option value="10">Mais de 8 pessoas</option>
-              </select>
+                onChange={setHospedes}
+                variant="capsule"
+                placeholder="Qualquer quantidade"
+                options={[
+                  { value: "", label: "Qualquer quantidade" },
+                  { value: "2", label: "Casal (2 pessoas)" },
+                  { value: "4", label: "Família (até 4 pessoas)" },
+                  { value: "6", label: "Até 6 pessoas" },
+                  { value: "8", label: "Até 8 pessoas" },
+                  { value: "10", label: "Mais de 8 pessoas" },
+                ]}
+              />
             </div>
 
             {/* Campo: Código ou Botão de Ação */}

@@ -3,6 +3,7 @@
 import React from "react";
 import { Filter, SlidersHorizontal, RotateCcw, Search, MapPin, Home, Users, DollarSign } from "lucide-react";
 import { formatCurrency } from "@/lib/utils";
+import { AnimatedStaggeredSelect } from "@/components/ui/animated-staggered-select";
 
 export interface FilterState {
   busca: string;
@@ -54,16 +55,18 @@ export function PropertyFilter({ filters, onChange, totalResults, onReset }: Pro
           {/* Ordenação */}
           <div className="flex items-center gap-1.5 text-xs font-bold text-slate-600">
             <span>Ordenar:</span>
-            <select
+            <AnimatedStaggeredSelect
               value={filters.ordenacao}
-              onChange={(e) => handleChange("ordenacao", e.target.value)}
-              className="bg-slate-50 border border-slate-200 rounded-xl px-3 py-1.5 text-xs font-bold text-slate-800 focus:outline-none cursor-pointer"
-            >
-              <option value="padrao">Em Destaque</option>
-              <option value="preco_asc">Menor Preço da Diária</option>
-              <option value="preco_desc">Maior Preço da Diária</option>
-              <option value="hospedes_desc">Mais Hóspedes</option>
-            </select>
+              onChange={(val) => handleChange("ordenacao", val)}
+              variant="minimal"
+              placeholder="Em Destaque"
+              options={[
+                { value: "padrao", label: "Em Destaque" },
+                { value: "preco_asc", label: "Menor Preço" },
+                { value: "preco_desc", label: "Maior Preço" },
+                { value: "hospedes_desc", label: "Mais Hóspedes" },
+              ]}
+            />
           </div>
 
           {/* Limpar Filtros */}
@@ -100,58 +103,58 @@ export function PropertyFilter({ filters, onChange, totalResults, onReset }: Pro
 
         {/* Campo Praia */}
         <div>
-          <label className="block text-xs font-bold text-slate-700 mb-1.5">
-            Praia / Bairro
-          </label>
-          <select
+          <AnimatedStaggeredSelect
+            label="Praia / Bairro"
             value={filters.praia}
-            onChange={(e) => handleChange("praia", e.target.value)}
-            className="w-full px-3 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-500 cursor-pointer"
-          >
-            <option value="">Todas as Praias</option>
-            <option value="Bombas">Praia de Bombas</option>
-            <option value="Canto Grande">Canto Grande</option>
-            <option value="Mariscal">Mariscal</option>
-            <option value="Bombinhas (Centro)">Bombinhas Centro</option>
-            <option value="Quatro Ilhas">Quatro Ilhas</option>
-          </select>
+            onChange={(val) => handleChange("praia", val)}
+            variant="filter"
+            placeholder="Todas as Praias"
+            options={[
+              { value: "", label: "Todas as Praias" },
+              { value: "Bombas", label: "Praia de Bombas" },
+              { value: "Canto Grande", label: "Canto Grande" },
+              { value: "Mariscal", label: "Mariscal" },
+              { value: "Bombinhas (Centro)", label: "Bombinhas Centro" },
+              { value: "Quatro Ilhas", label: "Quatro Ilhas" },
+            ]}
+          />
         </div>
 
         {/* Campo Tipo */}
         <div>
-          <label className="block text-xs font-bold text-slate-700 mb-1.5">
-            Tipo de Imóvel
-          </label>
-          <select
+          <AnimatedStaggeredSelect
+            label="Tipo de Imóvel"
             value={filters.tipo}
-            onChange={(e) => handleChange("tipo", e.target.value)}
-            className="w-full px-3 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-500 cursor-pointer"
-          >
-            <option value="">Todos os Tipos</option>
-            <option value="Apartamento">Apartamento</option>
-            <option value="Cobertura">Cobertura</option>
-            <option value="Casa">Casa</option>
-            <option value="Sobrado">Sobrado</option>
-          </select>
+            onChange={(val) => handleChange("tipo", val)}
+            variant="filter"
+            placeholder="Todos os Tipos"
+            options={[
+              { value: "", label: "Todos os Tipos" },
+              { value: "Apartamento", label: "Apartamento" },
+              { value: "Cobertura", label: "Cobertura" },
+              { value: "Casa", label: "Casa" },
+              { value: "Sobrado", label: "Sobrado" },
+            ]}
+          />
         </div>
 
         {/* Campo Hóspedes Mínimos */}
         <div>
-          <label className="block text-xs font-bold text-slate-700 mb-1.5">
-            Capacidade de Hóspedes
-          </label>
-          <select
+          <AnimatedStaggeredSelect
+            label="Capacidade de Hóspedes"
             value={filters.hospedes}
-            onChange={(e) => handleChange("hospedes", e.target.value)}
-            className="w-full px-3 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-500 cursor-pointer"
-          >
-            <option value="">Qualquer quantidade</option>
-            <option value="2">2+ Hóspedes</option>
-            <option value="4">4+ Hóspedes</option>
-            <option value="6">6+ Hóspedes</option>
-            <option value="8">8+ Hóspedes</option>
-            <option value="10">10+ Hóspedes</option>
-          </select>
+            onChange={(val) => handleChange("hospedes", val)}
+            variant="filter"
+            placeholder="Qualquer quantidade"
+            options={[
+              { value: "", label: "Qualquer quantidade" },
+              { value: "2", label: "2+ Hóspedes" },
+              { value: "4", label: "4+ Hóspedes" },
+              { value: "6", label: "6+ Hóspedes" },
+              { value: "8", label: "8+ Hóspedes" },
+              { value: "10", label: "10+ Hóspedes" },
+            ]}
+          />
         </div>
 
       </div>

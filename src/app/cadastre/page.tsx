@@ -1,9 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import { PlusCircle, ShieldCheck, CheckCircle2, Send, Sparkles, Building2, Phone, ArrowUpRight } from "lucide-react";
+import { PlusCircle, ShieldCheck, CheckCircle2, Send, Building2, Phone, ArrowUpRight } from "lucide-react";
 import { getWhatsAppLink } from "@/data/empresa";
 import { useBranch } from "@/context/BranchContext";
+import { AnimatedStaggeredSelect } from "@/components/ui/animated-staggered-select";
 
 export default function CadastreImovelPage() {
   const { branch } = useBranch();
@@ -35,7 +36,6 @@ export default function CadastreImovelPage() {
       {/* Header Editorial */}
       <div className="text-center max-w-3xl mx-auto mb-16">
         <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-slate-200/70 text-slate-700 text-xs font-bold uppercase tracking-wider mb-3">
-          <Sparkles className="w-3.5 h-3.5 text-[#F59E0B]" />
           Área Exclusiva do Proprietário
         </div>
         <h1 className="text-3xl sm:text-5xl font-extrabold text-[#111827] tracking-tight">
@@ -112,51 +112,48 @@ export default function CadastreImovelPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">
-                    Finalidade
-                  </label>
-                  <select
+                  <AnimatedStaggeredSelect
+                    label="Finalidade"
                     value={finalidade}
-                    onChange={(e) => setFinalidade(e.target.value)}
-                    className="w-full px-3 py-3 rounded-2xl bg-slate-50 border border-slate-200 text-xs font-bold text-[#1E2638] focus:outline-none cursor-pointer"
-                  >
-                    <option value="Temporada">Temporada</option>
-                    <option value="Venda">Venda</option>
-                    <option value="Ambos">Ambos</option>
-                  </select>
+                    onChange={setFinalidade}
+                    placeholder="Temporada"
+                    options={[
+                      { value: "Temporada", label: "Temporada" },
+                      { value: "Venda", label: "Venda" },
+                      { value: "Ambos", label: "Ambos" },
+                    ]}
+                  />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">
-                    Tipo do Imóvel
-                  </label>
-                  <select
+                  <AnimatedStaggeredSelect
+                    label="Tipo do Imóvel"
                     value={tipo}
-                    onChange={(e) => setTipo(e.target.value)}
-                    className="w-full px-3 py-3 rounded-2xl bg-slate-50 border border-slate-200 text-xs font-bold text-[#1E2638] focus:outline-none cursor-pointer"
-                  >
-                    <option value="Apartamento">Apartamento</option>
-                    <option value="Cobertura">Cobertura</option>
-                    <option value="Casa">Casa</option>
-                    <option value="Sobrado">Sobrado</option>
-                  </select>
+                    onChange={setTipo}
+                    placeholder="Apartamento"
+                    options={[
+                      { value: "Apartamento", label: "Apartamento" },
+                      { value: "Cobertura", label: "Cobertura" },
+                      { value: "Casa", label: "Casa" },
+                      { value: "Sobrado", label: "Sobrado" },
+                    ]}
+                  />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">
-                    Praia
-                  </label>
-                  <select
+                  <AnimatedStaggeredSelect
+                    label="Praia"
                     value={praia}
-                    onChange={(e) => setPraia(e.target.value)}
-                    className="w-full px-3 py-3 rounded-2xl bg-slate-50 border border-slate-200 text-xs font-bold text-[#1E2638] focus:outline-none cursor-pointer"
-                  >
-                    <option value="Bombas">Bombas</option>
-                    <option value="Canto Grande">Canto Grande</option>
-                    <option value="Mariscal">Mariscal</option>
-                    <option value="Bombinhas (Centro)">Bombinhas Centro</option>
-                    <option value="Quatro Ilhas">Quatro Ilhas</option>
-                  </select>
+                    onChange={setPraia}
+                    placeholder="Bombas"
+                    options={[
+                      { value: "Bombas", label: "Bombas" },
+                      { value: "Canto Grande", label: "Canto Grande" },
+                      { value: "Mariscal", label: "Mariscal" },
+                      { value: "Bombinhas (Centro)", label: "Bombinhas Centro" },
+                      { value: "Quatro Ilhas", label: "Quatro Ilhas" },
+                    ]}
+                  />
                 </div>
               </div>
 

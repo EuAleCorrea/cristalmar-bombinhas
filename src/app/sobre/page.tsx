@@ -7,7 +7,7 @@ import { UnitsSection } from "@/components/UnitsSection";
 import { WhyUs } from "@/components/WhyUs";
 import { TestimonialImmersive } from "@/components/TestimonialImmersive";
 import { NewsletterBox } from "@/components/NewsletterBox";
-import { Building2, ShieldCheck, HeartHandshake, Award, Sparkles, ArrowRight, ArrowUpRight } from "lucide-react";
+import { Building2, ShieldCheck, HeartHandshake, Award, ArrowRight, ArrowUpRight } from "lucide-react";
 import { useBranch } from "@/context/BranchContext";
 
 export default function SobrePage() {
@@ -48,7 +48,6 @@ export default function SobrePage() {
           
           <div className="lg:col-span-6 space-y-4">
             <div className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-sky-50 text-[#0EA5E9] text-xs font-bold">
-              <Sparkles className="w-3.5 h-3.5" />
               Tradição e Hospitalidade
             </div>
             

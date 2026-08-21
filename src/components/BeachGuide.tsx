@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { PRAIAS_LIST } from "@/data/imoveis";
-import { MapPin, ArrowRight, Sparkles, Waves } from "lucide-react";
+import { MapPin, ArrowRight, Waves } from "lucide-react";
 
 export function BeachGuide() {
   return (

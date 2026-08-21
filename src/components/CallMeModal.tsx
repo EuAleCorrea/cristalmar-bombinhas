@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { X, PhoneCall, CheckCircle, Send, Sparkles } from "lucide-react";
+import { X, PhoneCall, CheckCircle, Send } from "lucide-react";
 import { getWhatsAppLink } from "@/data/empresa";
+import { AnimatedStaggeredSelect } from "@/components/ui/animated-staggered-select";
 
 interface CallMeModalProps {
   isOpen: boolean;
@@ -102,35 +103,33 @@ export function CallMeModal({ isOpen, onClose }: CallMeModalProps) {
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">
-                    Unidade de Atendimento
-                  </label>
-                  <select
+                  <AnimatedStaggeredSelect
+                    label="Unidade de Atendimento"
                     value={unidade}
-                    onChange={(e) => setUnidade(e.target.value as "bombas" | "cantoGrande")}
-                    className="w-full px-3 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-xs font-bold focus:outline-none focus:ring-2 focus:ring-sky-500 cursor-pointer"
-                  >
-                    <option value="bombas">Bombas (Matriz)</option>
-                    <option value="cantoGrande">Canto Grande (Filial)</option>
-                  </select>
+                    onChange={(val) => setUnidade(val as "bombas" | "cantoGrande")}
+                    placeholder="Selecione a unidade"
+                    options={[
+                      { value: "bombas", label: "Bombas (Matriz)" },
+                      { value: "cantoGrande", label: "Canto Grande (Filial)" },
+                    ]}
+                  />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">
-                    Melhor Horário
-                  </label>
-                  <select
+                  <AnimatedStaggeredSelect
+                    label="Melhor Horário"
                     value={periodo}
-                    onChange={(e) => setPeriodo(e.target.value)}
-                    className="w-full px-3 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-xs font-bold focus:outline-none focus:ring-2 focus:ring-sky-500 cursor-pointer"
-                  >
-                    <option value="Imediato">Agora mesmo</option>
-                    <option value="Manhã (08h às 12h)">Manhã</option>
-                    <option value="Tarde (13h às 18h)">Tarde</option>
-                    <option value="Noite">Noite</option>
-                  </select>
+                    onChange={setPeriodo}
+                    placeholder="Agora mesmo"
+                    options={[
+                      { value: "Imediato", label: "Agora mesmo" },
+                      { value: "Manhã (08h às 12h)", label: "Manhã" },
+                      { value: "Tarde (13h às 18h)", label: "Tarde" },
+                      { value: "Noite", label: "Noite" },
+                    ]}
+                  />
                 </div>
               </div>
 

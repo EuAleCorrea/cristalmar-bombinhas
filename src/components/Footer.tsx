@@ -11,7 +11,6 @@ import {
   Building2,
   Instagram,
   Facebook,
-  Sparkles,
   ArrowUpRight
 } from "lucide-react";
 import { EMPRESA_DATA, getWhatsAppLink } from "@/data/empresa";

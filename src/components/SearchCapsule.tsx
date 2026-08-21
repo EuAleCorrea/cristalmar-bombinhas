@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Search, MapPin, Home, Key, Waves, BedDouble, SlidersHorizontal, X } from "lucide-react";
+import { AnimatedStaggeredSelect } from "@/components/ui/animated-staggered-select";
 
 export function SearchCapsule() {
   const router = useRouter();
@@ -29,6 +30,44 @@ export function SearchCapsule() {
     }
   };
 
+  const tipoOptions = [
+    { value: "", label: "Todos os Tipos" },
+    { value: "Apartamento", label: "Apartamento" },
+    { value: "Cobertura", label: "Cobertura" },
+    { value: "Casa", label: "Casa" },
+    { value: "Sobrado", label: "Sobrado" },
+  ];
+
+  const negocioOptions = [
+    { value: "temporada", label: "Temporada" },
+    { value: "venda", label: "Venda" },
+  ];
+
+  const praiaOptions = [
+    { value: "", label: "Todas as Praias" },
+    { value: "Bombas", label: "Bombas" },
+    { value: "Canto Grande", label: "Canto Grande" },
+    { value: "Mariscal", label: "Mariscal" },
+    { value: "Bombinhas (Centro)", label: "Bombinhas Centro" },
+    { value: "Quatro Ilhas", label: "4 Ilhas" },
+    { value: "Zimbros", label: "Zimbros" },
+  ];
+
+  const distanciaOptions = [
+    { value: "", label: "Qualquer distância" },
+    { value: "beira-mar", label: "Pé na Areia (até 50m)" },
+    { value: "200m", label: "Até 200m" },
+    { value: "500m", label: "201m a 500m" },
+  ];
+
+  const dormsOptions = [
+    { value: "", label: "Todos" },
+    { value: "1", label: "1+" },
+    { value: "2", label: "2+" },
+    { value: "3", label: "3+" },
+    { value: "4", label: "4+" },
+  ];
+
   return (
     <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto -mt-6 sm:-mt-8 mb-16 relative z-30">
       
@@ -38,90 +77,62 @@ export function SearchCapsule() {
           
           {/* Célula 1: Tipo */}
           <div className="col-span-2 px-4 py-2 border-r border-slate-100 hover:bg-slate-50 rounded-full transition-colors">
-            <label className="block text-[10px] font-extrabold uppercase text-slate-400 tracking-wider">
-              Tipo do Imóvel
-            </label>
-            <select
+            <AnimatedStaggeredSelect
+              label="Tipo do Imóvel"
               value={tipo}
-              onChange={(e) => setTipo(e.target.value)}
-              className="w-full bg-transparent text-xs font-bold text-[#1E2638] focus:outline-none cursor-pointer"
-            >
-              <option value="">Todos os Tipos</option>
-              <option value="Apartamento">Apartamento</option>
-              <option value="Cobertura">Cobertura</option>
-              <option value="Casa">Casa</option>
-              <option value="Sobrado">Sobrado</option>
-            </select>
+              onChange={setTipo}
+              options={tipoOptions}
+              placeholder="Todos os Tipos"
+              variant="capsule"
+            />
           </div>
 
           {/* Célula 2: Negócio */}
           <div className="col-span-2 px-4 py-2 border-r border-slate-100 hover:bg-slate-50 rounded-full transition-colors">
-            <label className="block text-[10px] font-extrabold uppercase text-slate-400 tracking-wider">
-              Finalidade
-            </label>
-            <select
+            <AnimatedStaggeredSelect
+              label="Finalidade"
               value={negocio}
-              onChange={(e) => setNegocio(e.target.value)}
-              className="w-full bg-transparent text-xs font-bold text-[#1E2638] focus:outline-none cursor-pointer"
-            >
-              <option value="temporada">Temporada</option>
-              <option value="venda">Venda</option>
-            </select>
+              onChange={setNegocio}
+              options={negocioOptions}
+              placeholder="Temporada"
+              variant="capsule"
+            />
           </div>
 
           {/* Célula 3: Localização */}
           <div className="col-span-3 px-4 py-2 border-r border-slate-100 hover:bg-slate-50 rounded-full transition-colors">
-            <label className="block text-[10px] font-extrabold uppercase text-slate-400 tracking-wider">
-              Praia / Bairro
-            </label>
-            <select
+            <AnimatedStaggeredSelect
+              label="Praia / Bairro"
               value={localizacao}
-              onChange={(e) => setLocalizacao(e.target.value)}
-              className="w-full bg-transparent text-xs font-bold text-[#1E2638] focus:outline-none cursor-pointer"
-            >
-              <option value="">Todas as Praias</option>
-              <option value="Bombas">Bombas</option>
-              <option value="Canto Grande">Canto Grande</option>
-              <option value="Mariscal">Mariscal</option>
-              <option value="Bombinhas (Centro)">Bombinhas Centro</option>
-              <option value="Quatro Ilhas">4 Ilhas</option>
-              <option value="Zimbros">Zimbros</option>
-            </select>
+              onChange={setLocalizacao}
+              options={praiaOptions}
+              placeholder="Todas as Praias"
+              variant="capsule"
+            />
           </div>
 
           {/* Célula 4: Distância do Mar */}
           <div className="col-span-2 px-4 py-2 border-r border-slate-100 hover:bg-slate-50 rounded-full transition-colors">
-            <label className="block text-[10px] font-extrabold uppercase text-slate-400 tracking-wider">
-              Distância do Mar
-            </label>
-            <select
+            <AnimatedStaggeredSelect
+              label="Distância do Mar"
               value={distanciaMar}
-              onChange={(e) => setDistanciaMar(e.target.value)}
-              className="w-full bg-transparent text-xs font-bold text-[#1E2638] focus:outline-none cursor-pointer"
-            >
-              <option value="">Qualquer distância</option>
-              <option value="beira-mar">Pé na Areia (até 50m)</option>
-              <option value="200m">Até 200m</option>
-              <option value="500m">201m a 500m</option>
-            </select>
+              onChange={setDistanciaMar}
+              options={distanciaOptions}
+              placeholder="Qualquer distância"
+              variant="capsule"
+            />
           </div>
 
           {/* Célula 5: Dormitórios */}
           <div className="col-span-1 px-3 py-2 hover:bg-slate-50 rounded-full transition-colors">
-            <label className="block text-[10px] font-extrabold uppercase text-slate-400 tracking-wider">
-              Dorms
-            </label>
-            <select
+            <AnimatedStaggeredSelect
+              label="Dorms"
               value={dormitorios}
-              onChange={(e) => setDormitorios(e.target.value)}
-              className="w-full bg-transparent text-xs font-bold text-[#1E2638] focus:outline-none cursor-pointer"
-            >
-              <option value="">Todos</option>
-              <option value="1">1+</option>
-              <option value="2">2+</option>
-              <option value="3">3+</option>
-              <option value="4">4+</option>
-            </select>
+              onChange={setDormitorios}
+              options={dormsOptions}
+              placeholder="Todos"
+              variant="capsule"
+            />
           </div>
 
           {/* Célula 6: Botão de Busca */}
@@ -203,48 +214,33 @@ export function SearchCapsule() {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">Praia / Região</label>
-                <select
+                <AnimatedStaggeredSelect
+                  label="Praia / Região"
                   value={localizacao}
-                  onChange={(e) => setLocalizacao(e.target.value)}
-                  className="w-full p-3 rounded-2xl bg-slate-50 border border-slate-200 text-xs font-bold text-[#1E2638]"
-                >
-                  <option value="">Todas as Praias</option>
-                  <option value="Bombas">Bombas</option>
-                  <option value="Canto Grande">Canto Grande</option>
-                  <option value="Mariscal">Mariscal</option>
-                  <option value="Bombinhas (Centro)">Bombinhas Centro</option>
-                  <option value="Quatro Ilhas">4 Ilhas</option>
-                </select>
+                  onChange={setLocalizacao}
+                  options={praiaOptions}
+                  placeholder="Todas as Praias"
+                />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">Tipo de Imóvel</label>
-                <select
+                <AnimatedStaggeredSelect
+                  label="Tipo de Imóvel"
                   value={tipo}
-                  onChange={(e) => setTipo(e.target.value)}
-                  className="w-full p-3 rounded-2xl bg-slate-50 border border-slate-200 text-xs font-bold text-[#1E2638]"
-                >
-                  <option value="">Todos os Tipos</option>
-                  <option value="Apartamento">Apartamento</option>
-                  <option value="Cobertura">Cobertura</option>
-                  <option value="Casa">Casa</option>
-                  <option value="Sobrado">Sobrado</option>
-                </select>
+                  onChange={setTipo}
+                  options={tipoOptions}
+                  placeholder="Todos os Tipos"
+                />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">Distância do Mar</label>
-                <select
+                <AnimatedStaggeredSelect
+                  label="Distância do Mar"
                   value={distanciaMar}
-                  onChange={(e) => setDistanciaMar(e.target.value)}
-                  className="w-full p-3 rounded-2xl bg-slate-50 border border-slate-200 text-xs font-bold text-[#1E2638]"
-                >
-                  <option value="">Qualquer distância</option>
-                  <option value="beira-mar">Pé na Areia (até 50m)</option>
-                  <option value="200m">Até 200m</option>
-                  <option value="500m">201m a 500m</option>
-                </select>
+                  onChange={setDistanciaMar}
+                  options={distanciaOptions}
+                  placeholder="Qualquer distância"
+                />
               </div>
             </div>
 

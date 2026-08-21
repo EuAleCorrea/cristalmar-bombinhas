@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Star, ChevronLeft, ChevronRight, Quote, Sparkles } from "lucide-react";
+import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { EMPRESA_DATA } from "@/data/empresa";
 
 export function TestimonialImmersive() {

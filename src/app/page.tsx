@@ -12,7 +12,7 @@ import { UnitsSection } from "@/components/UnitsSection";
 import { NewsletterBox } from "@/components/NewsletterBox";
 import { IMOVEIS_DATA } from "@/data/imoveis";
 import { useBranch } from "@/context/BranchContext";
-import { Sparkles, ArrowRight, Waves } from "lucide-react";
+import { ArrowRight, Waves } from "lucide-react";
 
 export default function HomePage() {
   const { branch } = useBranch();
@@ -62,7 +62,6 @@ export default function HomePage() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
           <div>
             <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-slate-200/70 text-slate-700 text-xs font-bold uppercase tracking-wider mb-2">
-              <Sparkles className="w-3.5 h-3.5 text-[#F59E0B]" />
               Catálogo de Temporada
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-[#111827] tracking-tight">

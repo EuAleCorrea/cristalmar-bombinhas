@@ -21,9 +21,12 @@ import {
   Maximize2, 
   X, 
   Share2, 
-  Sparkles, 
   Building2 
 } from "lucide-react";
+import { format } from "date-fns";
+import { ptBR } from "date-fns/locale";
+import { AnimatedStaggeredSelect } from "@/components/ui/animated-staggered-select";
+import { DatePicker } from "@/components/ui/date-picker";
 
 interface PropertyDetailClientProps {
   imovel: Imovel;
@@ -32,8 +35,8 @@ interface PropertyDetailClientProps {
 export function PropertyDetailClient({ imovel }: PropertyDetailClientProps) {
   const [activePhotoIdx, setActivePhotoIdx] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
-  const [checkInDate, setCheckInDate] = useState("");
-  const [checkOutDate, setCheckOutDate] = useState("");
+  const [checkInDate, setCheckInDate] = useState<Date | undefined>(undefined);
+  const [checkOutDate, setCheckOutDate] = useState<Date | undefined>(undefined);
   const [numHospedes, setNumHospedes] = useState("4");
 
   const isPeNaAreia = 
@@ -47,9 +50,7 @@ export function PropertyDetailClient({ imovel }: PropertyDetailClientProps) {
   // Cálculo de diárias se datas informadas
   const diasCalculados = React.useMemo(() => {
     if (!checkInDate || !checkOutDate) return 0;
-    const start = new Date(checkInDate);
-    const end = new Date(checkOutDate);
-    const diff = end.getTime() - start.getTime();
+    const diff = checkOutDate.getTime() - checkInDate.getTime();
     const days = Math.ceil(diff / (1000 * 3600 * 24));
     return days > 0 ? days : 0;
   }, [checkInDate, checkOutDate]);
@@ -57,7 +58,9 @@ export function PropertyDetailClient({ imovel }: PropertyDetailClientProps) {
   const handleWhatsAppReservation = () => {
     let msg = `Olá! Gostaria de consultar a disponibilidade do imóvel *#${imovel.codigo}* (${imovel.titulo}) em *${imovel.praia}*.`;
     if (checkInDate && checkOutDate) {
-      msg += `\n📅 Período: de ${checkInDate} até ${checkOutDate} (${diasCalculados} diárias).\n👥 Hóspedes: ${numHospedes} pessoas.`;
+      const inFormatted = format(checkInDate, "dd/MM/yyyy", { locale: ptBR });
+      const outFormatted = format(checkOutDate, "dd/MM/yyyy", { locale: ptBR });
+      msg += `\n📅 Período: de ${inFormatted} até ${outFormatted} (${diasCalculados} diárias).\n👥 Hóspedes: ${numHospedes} pessoas.`;
     }
     const url = `https://api.whatsapp.com/send?phone=${branchInfo.whatsappRaw}&text=${encodeURIComponent(msg)}`;
     window.open(url, "_blank");
@@ -121,7 +124,7 @@ export function PropertyDetailClient({ imovel }: PropertyDetailClientProps) {
           )}
           {imovel.destaque && (
             <span className="bg-[#F59E0B] text-slate-950 text-xs font-extrabold px-3 py-1 rounded-full flex items-center gap-1 shadow-sm">
-              <Sparkles className="w-3 h-3" /> Seleção Destaque
+              Seleção Destaque
             </span>
           )}
         </div>
@@ -253,8 +256,7 @@ export function PropertyDetailClient({ imovel }: PropertyDetailClientProps) {
 
           {/* Comodidades */}
           <div className="bg-white rounded-[2.5rem] p-8 border border-slate-200/80 shadow-card">
-            <h3 className="text-xl font-black text-[#111827] mb-6 flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-[#F59E0B]" />
+            <h3 className="text-xl font-black text-[#111827] mb-6">
               Comodidades do Imóvel
             </h3>
             
@@ -297,41 +299,48 @@ export function PropertyDetailClient({ imovel }: PropertyDetailClientProps) {
               </div>
             </div>
 
-            {/* Simulador de Datas */}
+            {/* Simulador de Datas com DatePicker */}
             <div className="space-y-3 pt-4 border-t border-slate-100 text-xs">
               <div>
-                <label className="block font-bold text-slate-700 mb-1">Check-in</label>
-                <input
-                  type="date"
-                  value={checkInDate}
-                  onChange={(e) => setCheckInDate(e.target.value)}
-                  className="w-full p-2.5 rounded-xl bg-slate-50 border border-slate-200 font-bold text-[#1E2638] focus:outline-none focus:ring-2 focus:ring-[#3B82F6]"
+                <DatePicker
+                  label="Check-in"
+                  placeholder="dd/mm/aaaa"
+                  date={checkInDate}
+                  onSelect={(d) => {
+                    setCheckInDate(d);
+                    if (d && checkOutDate && checkOutDate <= d) {
+                      const nextDay = new Date(d);
+                      nextDay.setDate(d.getDate() + 1);
+                      setCheckOutDate(nextDay);
+                    }
+                  }}
+                  minDate={new Date()}
+                  allowClear
                 />
               </div>
 
               <div>
-                <label className="block font-bold text-slate-700 mb-1">Check-out</label>
-                <input
-                  type="date"
-                  value={checkOutDate}
-                  onChange={(e) => setCheckOutDate(e.target.value)}
-                  className="w-full p-2.5 rounded-xl bg-slate-50 border border-slate-200 font-bold text-[#1E2638] focus:outline-none focus:ring-2 focus:ring-[#3B82F6]"
+                <DatePicker
+                  label="Check-out"
+                  placeholder="dd/mm/aaaa"
+                  date={checkOutDate}
+                  onSelect={setCheckOutDate}
+                  minDate={checkInDate || new Date()}
+                  allowClear
                 />
               </div>
 
               <div>
-                <label className="block font-bold text-slate-700 mb-1">Hóspedes</label>
-                <select
+                <AnimatedStaggeredSelect
+                  label="Hóspedes"
                   value={numHospedes}
-                  onChange={(e) => setNumHospedes(e.target.value)}
-                  className="w-full p-2.5 rounded-xl bg-slate-50 border border-slate-200 font-bold text-[#1E2638] focus:outline-none cursor-pointer"
-                >
-                  {[...Array(imovel.hospedesMax)].map((_, i) => (
-                    <option key={i + 1} value={i + 1}>
-                      {i + 1} {i === 0 ? "Pessoa" : "Pessoas"}
-                    </option>
-                  ))}
-                </select>
+                  onChange={setNumHospedes}
+                  placeholder="Selecione hóspedes"
+                  options={[...Array(imovel.hospedesMax)].map((_, i) => ({
+                    value: String(i + 1),
+                    label: `${i + 1} ${i === 0 ? "Pessoa" : "Pessoas"}`,
+                  }))}
+                />
               </div>
 
               {diasCalculados > 0 && (

@@ -15,7 +15,7 @@ import {
   PhoneCall, 
   PlusCircle,
   Clock,
-  Sparkles
+  MessageCircle
 } from "lucide-react";
 import { EMPRESA_DATA, getWhatsAppLink } from "@/data/empresa";
 
@@ -167,7 +167,7 @@ export function Header({ onOpenCallMe }: HeaderProps) {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-sm shadow-lg shadow-emerald-600/20 hover:scale-105 transition-all"
             >
-              <Sparkles className="w-4 h-4 text-amber-300" />
+              <MessageCircle className="w-4 h-4" />
               Falar no WhatsApp
             </a>
           </div>
@@ -230,7 +230,7 @@ export function Header({ onOpenCallMe }: HeaderProps) {
                 rel="noopener noreferrer"
                 className="w-full py-3 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-center font-bold text-sm flex items-center justify-center gap-2 shadow-md"
               >
-                <Sparkles className="w-4 h-4 text-amber-300" />
+                <MessageCircle className="w-4 h-4" />
                 WhatsApp Unidade {activeUnit === "bombas" ? "Bombas" : "Canto Grande"}
               </a>
             </div>

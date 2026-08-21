@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { ChevronLeft, ChevronRight, ArrowUpRight, Sparkles, MapPin, Shield, Trees, Home } from "lucide-react";
+import { ChevronLeft, ChevronRight, ArrowUpRight, MapPin, Shield, Trees, Home } from "lucide-react";
 import { IMOVEIS_DATA } from "@/data/imoveis";
 import { EMPRESA_DATA } from "@/data/empresa";
 
@@ -31,7 +31,6 @@ export function DualFeatureShowcase() {
       {/* Header da Seção */}
       <div className="mb-12">
         <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-slate-200/70 text-slate-700 text-xs font-bold uppercase tracking-wider mb-2">
-          <Sparkles className="w-3.5 h-3.5 text-[#F59E0B]" />
           Destaque Exclusivo
         </div>
         <h2 className="text-3xl sm:text-4xl font-extrabold text-[#111827] tracking-tight">

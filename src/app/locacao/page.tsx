@@ -6,7 +6,6 @@ import { PropertyCardLuxury } from "@/components/PropertyCardLuxury";
 import { IMOVEIS_DATA, Imovel } from "@/data/imoveis";
 import { useBranch } from "@/context/BranchContext";
 import { 
-  Sparkles, 
   RotateCcw, 
   MessageCircle, 
   Waves, 
@@ -17,6 +16,7 @@ import {
   SlidersHorizontal,
   ArrowUpRight
 } from "lucide-react";
+import { AnimatedStaggeredSelect } from "@/components/ui/animated-staggered-select";
 
 function LocacaoListContent() {
   const searchParams = useSearchParams();
@@ -97,7 +97,6 @@ function LocacaoListContent() {
       {/* Header Editorial da Página */}
       <div className="mb-10 text-left">
         <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-slate-200/70 text-slate-700 text-xs font-bold uppercase tracking-wider mb-3">
-          <Sparkles className="w-3.5 h-3.5 text-[#F59E0B]" />
           Aluguel de Temporada &bull; Bombinhas SC
         </div>
         <h1 className="text-3xl sm:text-5xl font-extrabold text-[#111827] tracking-tight">
@@ -136,74 +135,74 @@ function LocacaoListContent() {
 
           {/* Praia */}
           <div>
-            <label className="block text-[10px] font-extrabold uppercase text-slate-400 mb-1">
-              Praia / Bairro
-            </label>
-            <select
+            <AnimatedStaggeredSelect
+              label="Praia / Bairro"
               value={praia}
-              onChange={(e) => setPraia(e.target.value)}
-              className="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-[#1E2638] focus:outline-none focus:ring-2 focus:ring-[#3B82F6] cursor-pointer"
-            >
-              <option value="">Todas as Praias</option>
-              <option value="Bombas">Bombas</option>
-              <option value="Canto Grande">Canto Grande</option>
-              <option value="Mariscal">Mariscal</option>
-              <option value="Bombinhas (Centro)">Bombinhas Centro</option>
-              <option value="Quatro Ilhas">Quatro Ilhas</option>
-            </select>
+              onChange={setPraia}
+              variant="filter"
+              placeholder="Todas as Praias"
+              options={[
+                { value: "", label: "Todas as Praias" },
+                { value: "Bombas", label: "Bombas" },
+                { value: "Canto Grande", label: "Canto Grande" },
+                { value: "Mariscal", label: "Mariscal" },
+                { value: "Bombinhas (Centro)", label: "Bombinhas Centro" },
+                { value: "Quatro Ilhas", label: "Quatro Ilhas" },
+              ]}
+            />
           </div>
 
           {/* Tipo */}
           <div>
-            <label className="block text-[10px] font-extrabold uppercase text-slate-400 mb-1">
-              Tipo
-            </label>
-            <select
+            <AnimatedStaggeredSelect
+              label="Tipo"
               value={tipo}
-              onChange={(e) => setTipo(e.target.value)}
-              className="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-[#1E2638] focus:outline-none focus:ring-2 focus:ring-[#3B82F6] cursor-pointer"
-            >
-              <option value="">Todos os Tipos</option>
-              <option value="Apartamento">Apartamento</option>
-              <option value="Cobertura">Cobertura</option>
-              <option value="Casa">Casa</option>
-              <option value="Sobrado">Sobrado</option>
-            </select>
+              onChange={setTipo}
+              variant="filter"
+              placeholder="Todos os Tipos"
+              options={[
+                { value: "", label: "Todos os Tipos" },
+                { value: "Apartamento", label: "Apartamento" },
+                { value: "Cobertura", label: "Cobertura" },
+                { value: "Casa", label: "Casa" },
+                { value: "Sobrado", label: "Sobrado" },
+              ]}
+            />
           </div>
 
           {/* Dormitórios */}
           <div>
-            <label className="block text-[10px] font-extrabold uppercase text-slate-400 mb-1">
-              Dormitórios
-            </label>
-            <select
+            <AnimatedStaggeredSelect
+              label="Dormitórios"
               value={dormitorios}
-              onChange={(e) => setDormitorios(e.target.value)}
-              className="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-[#1E2638] focus:outline-none focus:ring-2 focus:ring-[#3B82F6] cursor-pointer"
-            >
-              <option value="">Todos</option>
-              <option value="1">1+ Dormitório</option>
-              <option value="2">2+ Dormitórios</option>
-              <option value="3">3+ Dormitórios</option>
-              <option value="4">4+ Dormitórios</option>
-            </select>
+              onChange={setDormitorios}
+              variant="filter"
+              placeholder="Todos"
+              options={[
+                { value: "", label: "Todos" },
+                { value: "1", label: "1+ Dormitório" },
+                { value: "2", label: "2+ Dormitórios" },
+                { value: "3", label: "3+ Dormitórios" },
+                { value: "4", label: "4+ Dormitórios" },
+              ]}
+            />
           </div>
 
           {/* Ordenação */}
           <div>
-            <label className="block text-[10px] font-extrabold uppercase text-slate-400 mb-1">
-              Ordenar Por
-            </label>
-            <select
+            <AnimatedStaggeredSelect
+              label="Ordenar Por"
               value={ordenacao}
-              onChange={(e) => setOrdenacao(e.target.value as any)}
-              className="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-[#1E2638] focus:outline-none focus:ring-2 focus:ring-[#3B82F6] cursor-pointer"
-            >
-              <option value="padrao">Em Destaque</option>
-              <option value="preco_asc">Menor Preço</option>
-              <option value="preco_desc">Maior Preço</option>
-              <option value="dorms_desc">Mais Quartos</option>
-            </select>
+              onChange={(val) => setOrdenacao(val as any)}
+              variant="filter"
+              placeholder="Em Destaque"
+              options={[
+                { value: "padrao", label: "Em Destaque" },
+                { value: "preco_asc", label: "Menor Preço" },
+                { value: "preco_desc", label: "Maior Preço" },
+                { value: "dorms_desc", label: "Mais Quartos" },
+              ]}
+            />
           </div>
 
         </div>

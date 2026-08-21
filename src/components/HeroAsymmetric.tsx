@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { Star, ArrowRight, ArrowUpRight, Sparkles, MapPin, Waves, ShieldCheck } from "lucide-react";
+import { Star, ArrowRight, ArrowUpRight, MapPin, Waves, ShieldCheck } from "lucide-react";
 import { useBranch } from "@/context/BranchContext";
 
 export function HeroAsymmetric() {

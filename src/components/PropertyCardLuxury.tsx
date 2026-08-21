@@ -11,7 +11,6 @@ import {
   ArrowUpRight, 
   ChevronLeft, 
   ChevronRight,
-  Sparkles,
   Maximize2
 } from "lucide-react";
 import { Imovel } from "@/data/imoveis";

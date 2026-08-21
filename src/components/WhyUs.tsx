@@ -6,7 +6,6 @@ import {
   Building, 
   BadgeCheck, 
   Headphones, 
-  Sparkles, 
   HeartHandshake
 } from "lucide-react";
 import { EMPRESA_DATA } from "@/data/empresa";
@@ -60,7 +59,6 @@ export function WhyUs() {
               </div>
 
               <div className="mt-6 pt-4 border-t border-slate-200/80 flex items-center gap-1.5 text-[11px] font-bold text-[#0EA5E9]">
-                <Sparkles className="w-3 h-3 text-[#F59E0B]" />
                 <span>Padrão Cristalmar</span>
               </div>
             </div>

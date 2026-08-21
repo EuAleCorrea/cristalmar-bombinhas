@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Star, Quote, Sparkles } from "lucide-react";
+import { Star, Quote } from "lucide-react";
 import { EMPRESA_DATA } from "@/data/empresa";
 
 export function Testimonials() {
@@ -17,7 +17,6 @@ export function Testimonials() {
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-amber-300 text-xs font-bold uppercase tracking-wider mb-3">
-            <Sparkles className="w-3.5 h-3.5" />
             Experiências Reais
           </div>
           <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { MessageCircle, X, ChevronRight, Sparkles, Building2, MapPin } from "lucide-react";
+import { MessageCircle, X, ChevronRight, Building2, MapPin } from "lucide-react";
 import { EMPRESA_DATA, getWhatsAppLink } from "@/data/empresa";
 
 export function FloatingWhatsApp() {

@@ -13,8 +13,7 @@ import {
   ChevronRight, 
   MessageCircle,
   Eye,
-  CheckCircle2,
-  Sparkles
+  CheckCircle2
 } from "lucide-react";
 import { Imovel } from "@/data/imoveis";
 import { getPropertyWhatsAppLink } from "@/data/empresa";
@@ -75,7 +74,7 @@ export function PropertyCard({ imovel, priority = false }: PropertyCardProps) {
             </span>
             {imovel.destaque && (
               <span className="bg-amber-500 text-slate-950 text-xs font-extrabold px-2.5 py-1 rounded-full shadow flex items-center gap-1">
-                <Sparkles className="w-3 h-3" /> Destaque
+                Destaque
               </span>
             )}
           </div>

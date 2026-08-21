@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from "react";
 import { PropertyCardLuxury } from "@/components/PropertyCardLuxury";
 import { IMOVEIS_DATA } from "@/data/imoveis";
-import { Sparkles, Key, Building2, TrendingUp, ShieldCheck, CheckCircle2, ArrowUpRight } from "lucide-react";
+import { Key, Building2, TrendingUp, ShieldCheck, CheckCircle2, ArrowUpRight } from "lucide-react";
 import { getWhatsAppLink } from "@/data/empresa";
 import { useBranch } from "@/context/BranchContext";
 

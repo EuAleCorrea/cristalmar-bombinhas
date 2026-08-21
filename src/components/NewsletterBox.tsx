@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { ArrowRight, CheckCircle2, Mail, Sparkles } from "lucide-react";
+import { ArrowRight, CheckCircle2, Mail } from "lucide-react";
 
 export function NewsletterBox() {
   const [email, setEmail] = useState("");
@@ -28,7 +28,6 @@ export function NewsletterBox() {
         <div className="max-w-2xl mx-auto relative z-10 space-y-4">
           
           <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/10 text-slate-200 text-xs font-bold uppercase tracking-wider mb-2">
-            <Sparkles className="w-3.5 h-3.5 text-[#FBBF24]" />
             Oportunidades Exclusivas
           </div>
 

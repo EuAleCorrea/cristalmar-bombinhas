@@ -3,8 +3,9 @@
 import React, { useState } from "react";
 import { UnitsSection } from "@/components/UnitsSection";
 import { EMPRESA_DATA, getWhatsAppLink } from "@/data/empresa";
-import { Mail, Phone, MessageCircle, MapPin, Send, CheckCircle2, Clock, Sparkles, ArrowUpRight } from "lucide-react";
+import { Mail, Phone, MessageCircle, MapPin, Send, CheckCircle2, Clock, ArrowUpRight } from "lucide-react";
 import { useBranch } from "@/context/BranchContext";
+import { AnimatedStaggeredSelect } from "@/components/ui/animated-staggered-select";
 
 export default function ContatoPage() {
   const { branch, setBranch } = useBranch();
@@ -31,7 +32,6 @@ export default function ContatoPage() {
       {/* Header Editorial */}
       <div className="text-center max-w-3xl mx-auto mb-16">
         <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-slate-200/70 text-slate-700 text-xs font-bold uppercase tracking-wider mb-3">
-          <Sparkles className="w-3.5 h-3.5 text-[#F59E0B]" />
           Atendimento & Suporte
         </div>
         <h1 className="text-3xl sm:text-5xl font-extrabold text-[#111827] tracking-tight">
@@ -110,21 +110,20 @@ export default function ContatoPage() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">
-                    Unidade de Atendimento
-                  </label>
-                  <select
+                  <AnimatedStaggeredSelect
+                    label="Unidade de Atendimento"
                     value={unidade}
-                    onChange={(e) => {
-                      const val = e.target.value as "bombas" | "cantoGrande";
-                      setUnidade(val);
-                      setBranch(val);
+                    onChange={(val) => {
+                      const v = val as "bombas" | "cantoGrande";
+                      setUnidade(v);
+                      setBranch(v);
                     }}
-                    className="w-full px-3 py-3 rounded-2xl bg-slate-50 border border-slate-200 text-xs font-bold text-[#1E2638] focus:outline-none cursor-pointer"
-                  >
-                    <option value="bombas">Bombas (Matriz)</option>
-                    <option value="cantoGrande">Canto Grande (Filial)</option>
-                  </select>
+                    placeholder="Selecione a unidade"
+                    options={[
+                      { value: "bombas", label: "Bombas (Matriz)" },
+                      { value: "cantoGrande", label: "Canto Grande (Filial)" },
+                    ]}
+                  />
                 </div>
               </div>
 
